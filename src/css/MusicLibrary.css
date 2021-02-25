@@ -1,0 +1,130 @@
+/** FLEX CSS **/
+.flx-row {
+    display: flex;
+    flex-direction: row;
+}
+.main-section {
+    background-color: black;
+    color: white;
+    min-height: 100vh;
+    margin: 0px;
+}
+.fluid {
+    width: 100%;
+}
+.nav-topic {
+    margin-top: -16px;
+    background-color: rgba(185, 185, 185, 0.274);
+    color: rgb(207, 207, 207);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 30px;
+    text-indent: 30px;
+}
+.nav-bar {
+    margin: 0px;
+    padding: 0px;
+}
+/** 2 nav bars **/
+.main-nav > li{
+    text-indent: 2px;
+    width: 40%;
+    padding: 20px;
+    padding-top: 50px;
+    font-size: 40px;
+    font-weight: 800;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    letter-spacing: 2px;
+}
+
+.sub-nav > li {
+    width: 28%;
+    padding: 20px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    text-transform: capitalize;
+    text-align: center;
+}
+.search-section{
+    padding: 20px;
+}
+.search {
+    padding: 10px;
+}
+.search-bar {
+    width: 70%;
+    background-color: rgba(128, 128, 128, 0.315);
+    padding: 20px;
+    color: rgb(204, 204, 204);
+}
+.search-bar > .icon  {
+    width: 7%;
+    padding-right: 20px;
+}
+.search-bar > .input {
+    background-color: rgba(0, 0, 0, 0);
+    border-color: rgba(255, 255, 255, 0);
+    color: gainsboro;
+    font-size: 30px;
+    width: 100%;
+    padding: 10px;
+    margin: -10px;
+    
+}
+.input::placeholder {
+    color: rgb(153, 153, 153);
+}
+textarea:focus, input:focus{
+    outline: none;
+}
+.search > .btn {
+    width: 25%;
+    padding: 20px;
+    margin-left: 5%;
+    border: 2px solid gray;
+    text-align: center;
+}
+
+/** The container css **/
+.extend-fluid {
+    padding-bottom: 180px;
+}
+.container {
+    background-color: black;
+    margin: 20px;
+    padding: 20px;
+}
+.img-box { 
+    width: 150px;
+    height: 150px;
+    margin-left: -20px;
+    background-color: rgba(255, 255, 255, 0.425);
+}
+.img-box-circle { 
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-left: -20px;
+    background-color: rgba(255, 255, 255, 0.527);
+}
+.text-box {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    width: 60%;
+}
+.text-box > .main-topic {
+    font-size: 38px;
+    font-weight: 700;
+}
+.text-box > .sub-topic {
+    font-size: 32px;
+    color: rgba(255, 255, 255, 0.651);
+    margin-top: 10px;
+}
+.text-box > .time {
+    text-align: right;
+    margin-right: -100px;
+    margin-top: -90px;
+    color: rgba(187, 187, 187, 0.623);
+}

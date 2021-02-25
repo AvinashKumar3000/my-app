@@ -1,12 +1,10 @@
-import MusicLibrary from "./components/MusicLibrary";
-import './App.css';
-
-
-function App() {
-  return (
-    <div className="App">
-      <MusicLibrary></MusicLibrary>
-      <div className="footer">
+import React from "react";
+import StatusComponent from "./StatusComponent";
+const Status = (props) => {
+    return (
+        <div className="App">
+            <StatusComponent></StatusComponent>
+            <div className="footer">
         <ul> 
           <li>
             <a href="/">
@@ -34,9 +32,8 @@ function App() {
           </li>
         </ul>
       </div>
-    </div>
-    
-  );
+        </div>
+    )
 }
 
-export default App;
+export default Status;

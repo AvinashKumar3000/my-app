@@ -3,11 +3,23 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+import Chat from './components/Chat';
+import Status from './components/Status';
+import Manage from './components/Manage';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+      <BrowserRouter>
+        <Switch>
+            <Route path="/" component={App} exact />
+            <Route path="/chat" component={Chat} />
+            <Route path="/status" component={Status} />
+            <Route path="/manage" component={Manage} />
+            <Route component={Error} />
+        </Switch>
+    </BrowserRouter>
+    ,
   document.getElementById('root')
 );
 

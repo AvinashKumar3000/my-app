@@ -1,12 +1,12 @@
-import MusicLibrary from "./components/MusicLibrary";
-import './App.css';
+import React from "react";
+import '../index.css';
+import ChatComponent from "./ChatComponent";
+const Chat = (props) => {
 
-
-function App() {
-  return (
-    <div className="App">
-      <MusicLibrary></MusicLibrary>
-      <div className="footer">
+    return (
+        <div className="App">
+            <ChatComponent></ChatComponent>
+            <div className="footer">
         <ul> 
           <li>
             <a href="/">
@@ -34,9 +34,8 @@ function App() {
           </li>
         </ul>
       </div>
-    </div>
-    
-  );
+        </div>
+    )
 }
 
-export default App;
+export default Chat;
