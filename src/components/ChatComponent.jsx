@@ -1,7 +1,12 @@
 import React from "react";
 import '../css/MusicLibrary.css';
+import { useSelector, useDispatch } from "react-redux";
+import { Individual, Group, ChatAlbums } from "../actions/chat/SubNav";
 
 const ChatComponent = (props) => {
+
+    const ChatSubNavList = useSelector(state => state.ChatSubNavReducer);
+    const dispatch = useDispatch()
     return (
         <div className="main-section">
             <div className="fluid">
@@ -12,9 +17,9 @@ const ChatComponent = (props) => {
             
             <div className="fluid">
                 <ul className="sticky nav-bar sub-nav flx-row">
-                    <li>individual</li>
-                    <li>group</li>
-                    <li>Albums</li>
+                    <li className={ ChatSubNavList[0] ? 'active':'inactive'} onClick={() => dispatch(Individual())}>Individual</li>
+                    <li className={ ChatSubNavList[1] ? 'active':'inactive'} onClick={() => dispatch(Group())}>Group</li>
+                    <li className={ ChatSubNavList[2] ? 'active':'inactive'} onClick={() => dispatch(ChatAlbums())}>Albums</li>
                 </ul>
             </div>
             <hr/>

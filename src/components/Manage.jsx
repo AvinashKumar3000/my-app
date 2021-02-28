@@ -7,25 +7,25 @@ const Manage = (props) => {
             <div className="footer">
                 <ul> 
                 <li>
-                    <a href="/">
+                    <a className="inactive" href="/">
                     <i class="fa fa-home"></i>
                     <div className="link-name" >home</div>
                     </a>
                 </li>
                 <li>
-                    <a href="/chat">
+                    <a className="inactive" href="/chat">
                     <i class="fa fa-comments"></i>
                     <div className="link-name" >chat</div>
                     </a>
                 </li>
                 <li>
-                    <a href="/status">
+                    <a className="inactive" href="/status">
                     <i class="fa fa-circle-o-notch"></i>
                     <div className="link-name" >status</div>
                     </a>
                 </li>
                 <li>
-                    <a href="/manage">
+                    <a className="active" href="#">
                     <i class="fa fa-cogs"></i>
                     <div className="link-name" >manage</div>
                     </a>

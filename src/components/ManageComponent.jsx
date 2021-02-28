@@ -1,7 +1,10 @@
 import React from "react";
 import '../css/MusicLibrary.css';
-
+import { useSelector, useDispatch } from "react-redux";
+import { History, Attendance, Info } from "../actions/Manage/SubNav";
 const ManageComponent = (props) => {
+    const ManageSubNavReducer = useSelector(state => state.ManageSubNavReducer)
+    const dispatch = useDispatch()
     return (
         <div className="main-section">
             <div className="fluid">
@@ -11,9 +14,9 @@ const ManageComponent = (props) => {
             </div>
             <div className="fluid">
                 <ul className="sticky nav-bar sub-nav flx-row">
-                    <li>History</li>
-                    <li>Attendance</li>
-                    <li>info</li>
+                    <li className={ ManageSubNavReducer[0] ? 'active':'inactive'} onClick={() => dispatch(History())}>History</li>
+                    <li className={ ManageSubNavReducer[1] ? 'active':'inactive'} onClick={() => dispatch(Attendance())}>Attendance</li>
+                    <li className={ ManageSubNavReducer[2] ? 'active':'inactive'} onClick={() => dispatch(Info())}>Info</li>
                 </ul>
             </div>
             <hr/>

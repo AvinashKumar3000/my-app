@@ -9,16 +9,28 @@ import Chat from './components/Chat';
 import Status from './components/Status';
 import Manage from './components/Manage';
 
+import { createStore } from "redux";
+import allReducers from "./reducers";
+import { Provider } from 'react-redux';
+
+const store = createStore(
+  allReducers,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+
+);
+
 ReactDOM.render(
-      <BrowserRouter>
-        <Switch>
-            <Route path="/" component={App} exact />
-            <Route path="/chat" component={Chat} />
-            <Route path="/status" component={Status} />
-            <Route path="/manage" component={Manage} />
-            <Route component={Error} />
-        </Switch>
-    </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Switch>
+              <Route path="/" component={App} exact />
+              <Route path="/chat" component={Chat} />
+              <Route path="/status" component={Status} />
+              <Route path="/manage" component={Manage} />
+              <Route component={Error} />
+          </Switch>
+        </BrowserRouter>
+      </Provider>
     ,
   document.getElementById('root')
 );

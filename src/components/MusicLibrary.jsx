@@ -1,127 +1,56 @@
 import React from "react";
 import '../css/MusicLibrary.css';
+import PlayListsComponent from "./HomeSubComponents/PlayListsComponent";
+import ArtistComponent from "./HomeSubComponents/ArtistComponent";
+import AlbumComponent from "./HomeSubComponents/AlbumComponent";
+import PodcastComponent from "./HomeSubComponents/PodcastComponent";
+
+import { useSelector, useDispatch } from "react-redux";
+import { Playlists, Artists, Albums } from "../actions/home/SubNav";
+import { YourMusic, PodcastMusic } from "../actions/home/MainNav";
+
+
+const SubNavResult = ( navState ) => {
+    if (navState[0]) {
+        return <PlayListsComponent></PlayListsComponent>
+    } else if (navState[1]) {
+        return <ArtistComponent></ArtistComponent>
+    } else if (navState [2]) {
+        return <AlbumComponent></AlbumComponent>
+    }
+}
+
+const YourMusicCompoent = () => {
+    const homeSubNavList = useSelector(state => state.HomeSubNavReducer);
+    const dispatch = useDispatch()
+    return (
+        <div>
+            <div className="fluid">
+                <ul className="sticky nav-bar sub-nav flx-row">
+                    <li className={ homeSubNavList[0] ? 'active':'inactive'} onClick={() => dispatch(Playlists())}>Playlists</li>
+                    <li className={ homeSubNavList[1] ? 'active':'inactive'} onClick={() => dispatch(Artists())}>Artists</li>
+                    <li className={ homeSubNavList[2] ? 'active':'inactive'} onClick={() => dispatch(Albums())}>Albums</li>
+                </ul>
+            </div>
+            <hr/>
+            { SubNavResult(homeSubNavList) }
+        </div>
+    )
+}
 const MusicLibrary = (props) => {
+    const homeMainNavList = useSelector(state => state.HomeMainNavReducer);
+    const dispatch = useDispatch()
+    
     return (
         <div className="main-section">
             <div className="fluid">
                 <ul className="nav-bar main-nav flx-row">
-                    <li>Your Music</li>
-                    <li>Shared Music</li>
+                    <li className={ homeMainNavList[0] ? 'active':'inactive'} onClick={() => dispatch(YourMusic())}>Your Music</li>
+                    <li className={ homeMainNavList[1] ? 'active':'inactive'} onClick={() => dispatch(PodcastMusic())}>Podcast</li>
                 </ul>
             </div>
+            { homeMainNavList[0] ? <YourMusicCompoent></YourMusicCompoent> : <PodcastComponent></PodcastComponent>}
             
-            <div className="fluid">
-                <ul className="sticky nav-bar sub-nav flx-row">
-                    <li>Playlists</li>
-                    <li>Artists</li>
-                    <li>Albums</li>
-                </ul>
-            </div>
-            <hr/>
-            <div className="fluid">
-                <div className="search-section">
-                    <div className="search flx-row">
-                        <div className="search-bar flx-row">
-                            <i className="icon fa fa-search"></i>
-                            <input type="text" className="input" placeholder="Find my playlist"/>
-                        </div>
-                        <div className="btn">Filters</div>                        
-                    </div>
-                </div>
-            </div>
-            <div className="extend-fluid">
-                <div className="container flx-row">
-                    <div className="img-box">
-                        
-                    </div>
-                    <div className="text-box">
-                        <div className="main-topic">
-                            Create Playlist
-                        </div>
-                        <div className="sub-topic">
-                            new playlist created here-
-                        </div>
-                    </div>
-                </div>
-                <div className="container flx-row">
-                    <div className="img-box">
-                        
-                    </div>
-                    <div className="text-box">
-                        <div className="main-topic">
-                            Create Playlist
-                        </div>
-                        <div className="sub-topic">
-                            new playlist created here-
-                        </div>
-                    </div>
-                </div>
-                <div className="container flx-row">
-                    <div className="img-box">
-                        
-                    </div>
-                    <div className="text-box">
-                        <div className="main-topic">
-                            Create Playlist
-                        </div>
-                        <div className="sub-topic">
-                            new playlist created here-
-                        </div>
-                    </div>
-                </div>
-                <div className="container flx-row">
-                    <div className="img-box">
-                        
-                    </div>
-                    <div className="text-box">
-                        <div className="main-topic">
-                            Create Playlist
-                        </div>
-                        <div className="sub-topic">
-                            new playlist created here-
-                        </div>
-                    </div>
-                </div>
-                <div className="container flx-row">
-                    <div className="img-box">
-                        
-                    </div>
-                    <div className="text-box">
-                        <div className="main-topic">
-                            Create Playlist
-                        </div>
-                        <div className="sub-topic">
-                            new playlist created here-
-                        </div>
-                    </div>
-                </div>
-                <div className="container flx-row">
-                    <div className="img-box">
-                        
-                    </div>
-                    <div className="text-box">
-                        <div className="main-topic">
-                            Create Playlist
-                        </div>
-                        <div className="sub-topic">
-                            new playlist created here-
-                        </div>
-                    </div>
-                </div>
-                <div className="container flx-row">
-                    <div className="img-box">
-                        
-                    </div>
-                    <div className="text-box">
-                        <div className="main-topic">
-                            Create Playlist
-                        </div>
-                        <div className="sub-topic">
-                            new playlist created here-
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     )
 }
