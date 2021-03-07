@@ -5,12 +5,9 @@
 .footer > ul {
     padding: 0px;
 }
-.footer > ul > li > a {
-    width: ;
-}
 .footer > ul > li > a > i {
     padding: 2px;
-    font-size: 60px;
+    font-size: 26px;
     width: 100%;
     text-align: center;
 }

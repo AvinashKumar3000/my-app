@@ -13,6 +13,11 @@ import { createStore } from "redux";
 import allReducers from "./reducers";
 import { Provider } from 'react-redux';
 
+import ChatPage from "./pages/ChatPage";
+import StatusPage from './pages/StatusPage';
+import GroupPage from './pages/GroupPage';
+import MusicPlayer from './pages/MusicPlayer';
+
 const store = createStore(
   allReducers,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
@@ -27,6 +32,10 @@ ReactDOM.render(
               <Route path="/chat" component={Chat} />
               <Route path="/status" component={Status} />
               <Route path="/manage" component={Manage} />
+              <Route path="/chatPage/:id" component={ChatPage} />
+              <Route path="/groupPage/:id" component={GroupPage} />
+              <Route path="/statusPage/:id" component={StatusPage} />
+              <Route path="/musicPlayer" component={MusicPlayer} />
               <Route component={Error} />
           </Switch>
         </BrowserRouter>

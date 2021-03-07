@@ -26,7 +26,7 @@ const YourMusicCompoent = () => {
     return (
         <div>
             <div className="fluid">
-                <ul className="sticky nav-bar sub-nav flx-row">
+                <ul className="nav-bar sub-nav flx-row">
                     <li className={ homeSubNavList[0] ? 'active':'inactive'} onClick={() => dispatch(Playlists())}>Playlists</li>
                     <li className={ homeSubNavList[1] ? 'active':'inactive'} onClick={() => dispatch(Artists())}>Artists</li>
                     <li className={ homeSubNavList[2] ? 'active':'inactive'} onClick={() => dispatch(Albums())}>Albums</li>

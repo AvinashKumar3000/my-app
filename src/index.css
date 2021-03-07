@@ -1,11 +1,13 @@
 body {
-  margin: 0;
-  font-size: 35px;
+  margin-top: -35px;
+  font-size: 15px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding: 10px;
+  background-color: black;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -28,6 +30,7 @@ ul {
   bottom: 0px;
   width: 100%;
   position: fixed;
+  margin-left: -10px;
 }
 .footer > ul {
   display: flex;

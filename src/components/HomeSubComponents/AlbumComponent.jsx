@@ -13,7 +13,7 @@ const AlbumComponent = () => {
                             <i className="icon fa fa-search"></i>
                             <input type="text" className="input" placeholder="Find my Albums"/>
                         </div>
-                        <div className="btn">Filters</div>                        
+                        <button className="btn">Filters</button>                        
                     </div>
                 </div>
             </div>

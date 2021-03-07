@@ -11,7 +11,7 @@ const ArtistComponent = () => {
                             <i className="icon fa fa-search"></i>
                             <input type="text" className="input" placeholder="Find my Artists"/>
                         </div>
-                        <div className="btn">Filters</div>                        
+                        <button className="btn">Filters</button>                        
                     </div>
                 </div>
             </div>

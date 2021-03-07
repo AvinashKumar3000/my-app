@@ -13,7 +13,7 @@ const PlayListsComponent = () => {
                             <i className="icon fa fa-search"></i>
                             <input type="text" className="input" placeholder="Find my playlist"/>
                         </div>
-                        <div className="btn">Filters</div>                        
+                        <button className="btn">Filters</button>                        
                     </div>
                 </div>
             </div>
@@ -31,7 +31,19 @@ const PlayListsComponent = () => {
                         </div>
                     </div>
                 </div>
-                
+                <div className="container flx-row">
+                    <div className="img-box">
+                        
+                    </div>
+                    <div className="text-box">
+                        <div className="main-topic">
+                            Create Playlist
+                        </div>
+                        <div className="sub-topic">
+                            new playlist created here-
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )

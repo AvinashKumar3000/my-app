@@ -1,3 +1,36 @@
+.top-container {
+    background-color: #f1f1f1;
+    padding: 30px;
+    text-align: center;
+  }
+  
+  .header {
+    padding: 10px 16px;
+    background: #555;
+    color: #f1f1f1;
+  }
+  
+  .content {
+    padding: 16px;
+  }
+  
+  .sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+    margin-top: -20px;
+  }
+ 
+/** - - - - - - -- - - - - - - - **/
+.app {
+    color: white;
+    background-color: white;
+}
+hr {
+    margin-left: -20px;
+    margin-right: -20px;
+}
 /** FLEX CSS **/
 .flx-row {
     display: flex;
@@ -13,12 +46,14 @@
     width: 100%;
 }
 .nav-topic {
-    margin-top: -16px;
+    width: 113%;
+    margin-left: -7%;
+    margin-top: -10px;
     background-color: rgba(185, 185, 185, 0.274);
     color: rgb(207, 207, 207);
-    padding-top: 20px;
-    padding-bottom: 20px;
-    font-size: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 15px;
     text-indent: 30px;
 }
 .nav-bar {
@@ -31,7 +66,7 @@
     width: 40%;
     padding: 20px;
     padding-top: 50px;
-    font-size: 40px;
+    font-size: 18px;
     font-weight: 800;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     letter-spacing: 2px;
@@ -48,15 +83,17 @@
 /** nav active and inactive code... **/
 .active {
     border-bottom: 2px solid greenyellow;
+    position: relative;
 }
+
 .inactive {
     color: rgba(255, 255, 255, 0.616);
 }
 .search-section{
-    padding: 20px;
+    padding: 10px;
 }
 .search {
-    padding: 10px;
+    height: 10px;
 }
 .search-bar {
     width: 70%;
@@ -67,15 +104,17 @@
 .search-bar > .icon  {
     width: 7%;
     padding-right: 20px;
+    margin-top: -9px;
 }
 .search-bar > .input {
     background-color: rgba(0, 0, 0, 0);
     border-color: rgba(255, 255, 255, 0);
     color: gainsboro;
-    font-size: 30px;
+    font-size: 15px;
     width: 100%;
-    padding: 10px;
-    margin: -10px;
+    padding: 2px;
+    margin: -30px;
+    margin-left: -10px;
     
 }
 .input::placeholder {
@@ -86,46 +125,57 @@ textarea:focus, input:focus{
 }
 .search > .btn {
     width: 25%;
-    padding: 20px;
-    margin-left: 5%;
+    height: 40px;
+    margin-left: 2%;
     border: 2px solid gray;
+    background-color: rgba(0, 0, 0, 0.192);
     text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: white;
+    display: block;
 }
-
 /** The container css **/
 .extend-fluid {
+    margin-left: -10px;
     padding-bottom: 180px;
 }
 .container {
     background-color: black;
-    margin: 20px;
+    margin-top: 5px;
+    margin-bottom: -20px;
     padding: 20px;
+    padding-bottom: 0px;
     border: 2px solid rgba(255, 255, 255, 0);
-    border-bottom-color: rgba(185, 185, 185, 0.644);
+}
+.mr-minus{
+    margin-bottom: -32px;
 }
 .container-x {
     border: 2px solid rgba(255, 255, 255, 0);
 }
 .img-box { 
-    width: 120px;
-    height: 120px;
+    width: 70px;
+    height: 70px;
     margin-left: -20px;
     background-color: rgba(255, 255, 255, 0.425);
 }
 .img-box-x { 
-    width: 120px;
-    height: 120px;
+    width: 70px;
+    height: 70px;
     margin-top: 20px;
     background-color: rgb(255, 255, 255);
 }
 .img-box-circle { 
-    width: 120px;
-    height: 120px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     margin-left: -20px;
+    margin-top: 5px;
     background-color: rgba(255, 255, 255, 0.527);
     
 }
+
 .text-box {
     display: flex;
     flex-direction: column;
@@ -139,12 +189,15 @@ textarea:focus, input:focus{
     width: 80%;
 }
 .text-box > .main-topic {
-    font-size: 38px;
+    font-size: 18px;
     font-weight: 700;
-
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 }
 .text-box > .sub-topic {
-    font-size: 32px;
+    font-size: 15px;
     color: rgba(255, 255, 255, 0.651);
     margin-top: 10px;
     overflow: hidden;
@@ -154,8 +207,8 @@ textarea:focus, input:focus{
 }
 .text-box > .time {
     text-align: right;
-    margin-right: -100px;
-    margin-top: -90px;
+    margin-right: -80px;
+    margin-top: -50px;
     color: rgba(187, 187, 187, 0.623);
     overflow: hidden;
     display: -webkit-box;
@@ -174,21 +227,21 @@ textarea:focus, input:focus{
 }
 .txt1 {
     overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+    
 }
 .txt1 {
-    font-size: 38px;
+    font-size: 18px;
     font-weight: 700;
 }
 .txt2 {
-    font-size: 32px;
+    font-size: 12px;
     color: rgba(255, 255, 255, 0.781);
     margin-top: 10px;
 }
 .txt3 {
     overflow: hidden;
+}
+.line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -201,9 +254,8 @@ textarea:focus, input:focus{
 }
 .button > div {
     width: 150px;
-    padding: 20px;
+    padding: 8px;
     border: 2px solid rgb(245, 245, 245);
-    margin: 20px;
     margin-left: 0px;
     text-align: center;
     text-transform: uppercase;
@@ -213,7 +265,141 @@ textarea:focus, input:focus{
     float: right;
     text-align: end;
     padding: 20px;
-    margin: 20px;
     text-transform: uppercase;
     color: rgb(190, 190, 190);
+}
+
+/** The chat page system is here... **/
+
+.app-body {
+    padding-top: 40px;
+    padding-bottom: 70px;
+    padding-right: 40px;
+    width: 107%;
+    min-height: 80vh;
+    position: absolute;
+    overflow: auto;
+    font-size: 18px;
+    line-height: 1.2;
+}
+.app-header {
+    color: black;
+    height: 60px;
+    width: 112%;
+    margin-left: -20px;
+    background-color: rgb(126, 126, 126);
+    margin-top: 0px;
+    padding-left: 30px;
+    padding-top: 5px;
+}
+.img-box-circle-sm { 
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-left: -20px;
+    margin-top: 5px;
+    background-color: rgba(255, 255, 255, 0.527);
+}
+.user-name {
+    padding: 5px;
+    padding-left: 15px;
+    font-size: 23px;    
+}
+.c-status {
+    font-size: 13px;
+    color: greenyellow;
+}
+.app-header > i {
+    color: white;
+    font-size: xx-large;
+}
+.app-footer {
+    position: fixed;
+    color: black;
+    z-index: 3;
+    height: 60px;
+    width: 95%;
+    margin-left: -20px;
+    background-color: rgb(92, 92, 92);
+    bottom: 0;
+    padding-left: 10px;
+    padding-top: 5px;
+}
+.send-msg, .recieve-msg {
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    max-width: 220px;
+    padding-bottom: 25px;
+}
+.recieve-msg {
+    background-color: #252D31;
+    border-top-left-radius: 0px;
+}
+
+.send-msg {
+    background-color: #006564;
+    border-top-right-radius: 0px;
+    margin: auto;
+    margin-right: 0px;
+    margin-bottom: 10px;
+}
+
+.send-msg > .time ,.recieve-msg > .time {
+    color: rgb(182, 182, 182);
+    float: right;
+}
+.recieve-msg > .name {
+    color: rgb(71, 138, 39);
+}
+a {
+    display: block; 
+}
+/** -------------------------------  **/
+.status-header {
+    color: white;
+    height: 60px;
+    width: 112%;
+    margin-left: -20px;
+    background-color: rgba(126, 126, 126, 0.281);
+    margin-top: 0px;
+    padding-left: 30px;
+    padding-top: 5px;
+}
+#status-line {
+    margin-top: 20px;
+    width: 75%;
+}
+.inside-div {
+    width: 87%;
+    margin-left: -6%;
+    margin-right: 20%;
+    align-items: center;
+    text-align: center;
+}
+.inside-div > .user-time {
+    color: rgba(255, 255, 255, 0.575);
+}
+.status-body {
+    margin-top: 50%;
+    height: 50vh;
+    width: 100%;
+}
+.status-body > div {
+    color: red;
+}
+.status-footer {
+    position: fixed;
+    color: rgb(255, 255, 255);
+    z-index: 3;
+    min-height: 60px;
+    width: 95%;
+    margin-left: -20px;
+    background-color: rgba(126, 126, 126, 0);
+    bottom: 0;
+    padding-left: 10px;
+    padding-top: 5px;
+    font-size: 15px;
+    text-align: center;
 }

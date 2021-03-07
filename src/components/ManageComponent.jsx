@@ -13,7 +13,7 @@ const ManageComponent = (props) => {
                 </ul>
             </div>
             <div className="fluid">
-                <ul className="sticky nav-bar sub-nav flx-row">
+                <ul className="nav-bar sub-nav flx-row">
                     <li className={ ManageSubNavReducer[0] ? 'active':'inactive'} onClick={() => dispatch(History())}>History</li>
                     <li className={ ManageSubNavReducer[1] ? 'active':'inactive'} onClick={() => dispatch(Attendance())}>Attendance</li>
                     <li className={ ManageSubNavReducer[2] ? 'active':'inactive'} onClick={() => dispatch(Info())}>Info</li>
