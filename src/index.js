@@ -36,7 +36,6 @@ ReactDOM.render(
               <Route path="/groupPage/:id" component={GroupPage} />
               <Route path="/statusPage/:id" component={StatusPage} />
               <Route path="/musicPlayer" component={MusicPlayer} />
-              <Route component={Error} />
           </Switch>
         </BrowserRouter>
       </Provider>
