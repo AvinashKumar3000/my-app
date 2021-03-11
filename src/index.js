@@ -35,7 +35,6 @@ ReactDOM.render(
               <Route path="/chatPage/:id" component={ChatPage} />
               <Route path="/groupPage/:id" component={GroupPage} />
               <Route path="/statusPage/:id" component={StatusPage} />
-              <Route path="/musicPlayer" component={MusicPlayer} />
           </Switch>
         </BrowserRouter>
       </Provider>

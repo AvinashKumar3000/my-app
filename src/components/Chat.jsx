@@ -10,8 +10,8 @@ const Chat = (props) => {
         <ul> 
           <li>
             <a className="inactive" href="/">
-              <i className="fa fa-home"></i>
-              <div className="link-name" >home</div>
+              <i className="fa fa-music"></i>
+              <div className="link-name" >music</div>
             </a>
           </li>
           <li>

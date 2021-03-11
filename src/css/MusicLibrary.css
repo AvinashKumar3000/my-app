@@ -1,3 +1,37 @@
+.music-popup{
+    
+    height: 35vh;
+    margin-top: -185px;
+    width: 105%;
+    margin-left: -20px;
+}
+
+.song-list-head {
+    margin: 2%;
+    margin-top: 3%;
+    font-size: larger;
+    letter-spacing: 1px;
+}
+.music-box {
+    margin: 2%;
+    padding: 2%;
+    width: 40%;
+    font-size: medium;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 10px;
+    color: black;
+    background-color: rgba(200, 255, 0, 0.863);
+    min-height: 8vh;
+    float: right;
+}
+.back-btn {
+    width: 150px;
+    height: 40px;
+    float: right;
+    border-radius: 10px;
+    margin: 15px;
+}
 .top-container {
     background-color: #f1f1f1;
     padding: 30px;
@@ -137,6 +171,7 @@ textarea:focus, input:focus{
 }
 /** The container css **/
 .extend-fluid {
+    margin-top: 30px;
     margin-left: -10px;
     padding-bottom: 180px;
 }

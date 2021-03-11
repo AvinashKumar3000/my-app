@@ -10,8 +10,8 @@ function App() {
         <ul> 
           <li>
             <a className="active " href="#">
-              <i className="fa fa-home"></i>
-              <div className="link-name ">home</div>
+              <i className="fa fa-music"></i>
+              <div className="link-name ">music</div>
             </a>
           </li>
           <li>

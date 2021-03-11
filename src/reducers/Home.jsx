@@ -10,7 +10,7 @@ const HomeMainNavReducer = (state=[true,false],action=null) => {
     }
 }
 
-const HomeSubNavReducer = (state=[true,false,false],action=null) => {
+const HomeSubNavReducer = (state=[false,false,true],action=null) => {
     switch(action.type){
         case 'PLAYLISTS':
             return [true,false,false];
