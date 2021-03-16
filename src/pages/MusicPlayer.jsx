@@ -62,14 +62,14 @@ const MusicPlayer = forwardRef((props, ref) => {
                     <div><button>Add to playlist</button></div>
                 </section>
                 <section className="mp-img-section">
-                    <img src="#" alt="img"/>
+                    <img src={props.songs[songId].Cover} alt="img"/>
                 </section>
                 <section  className="mp-song-details-section">
                     <div className="mp-song-name-animation">
-                        { keys[songId] }
+                        { props.songs[songId].Name }
                     </div>
                     <div className="mp-author">
-                        sia
+                        { props.songs[songId].Artists.join(",") }
                     </div>
                 </section>
                 <section className="mp-song-control-section flex-row mp-w2">
@@ -90,14 +90,14 @@ const MusicPlayer = forwardRef((props, ref) => {
                                 <button style={{height:"40px",width:"100px",margin:"auto",marginLeft:"100px"}} onClick={showEvent} >show player</button>
                             </div>
                             <div className="mp-song-name-animation" style={{marginTop:"20px"}}>
-                                { keys[songId] }
+                                { props.songs[songId].Name }
                             </div>
                         </div>
                         : ""
                 }
                 <AudioPlayer
                     autoPlay
-                    src={props.songs[keys[songId]]}
+                    src={props.songs[songId].Url}
                     onPlay={e => console.log("onPlay")}
                     onEnded={stepForward}
                     // other props here

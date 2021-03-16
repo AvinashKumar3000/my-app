@@ -16,7 +16,7 @@ import { Provider } from 'react-redux';
 import ChatPage from "./pages/ChatPage";
 import StatusPage from './pages/StatusPage';
 import GroupPage from './pages/GroupPage';
-import MusicPlayer from './pages/MusicPlayer';
+import AuthPage from './pages/AuthPage';
 
 const store = createStore(
   allReducers,
@@ -28,7 +28,8 @@ ReactDOM.render(
       <Provider store={store}>
         <BrowserRouter>
           <Switch>
-              <Route path="/" component={App} exact />
+              <Route path="/Auth" component={AuthPage}/>
+              <Route path="/music" component={App} exact />
               <Route path="/chat" component={Chat} />
               <Route path="/status" component={Status} />
               <Route path="/manage" component={Manage} />

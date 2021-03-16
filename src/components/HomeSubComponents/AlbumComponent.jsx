@@ -1,35 +1,108 @@
 import React, { useState ,useRef} from "react";
 import '../../css/MusicLibrary.css';
 import MusicPlayer from "../../pages/MusicPlayer";
-import { aniruth, imman } from '../../resource/Songs';
+import songs from '../../resource/Songs';
 
 const AlbumComponent = () => {
-    const [songList, setsongList] = useState({'aniruth':aniruth,'imman':imman})
-    const [musicNavStatus, setmusicNavStatus] = useState(false)
-    const [song, setsong] = useState({})
+    const [viewList, setviewList] = useState(Object.keys(songs))
+    const [albumName, setalbumName] = useState("")
+    const [movieName, setmovieName] = useState("")
+    const [musicNavStatus, setmusicNavStatus] = useState([true,false,false])
+    const [songId, setsongId] = useState(0)
 
     const childRef = useRef();
 
-    const forward = (e,ele) => {
+    const showAlbums = () => {
+        return (
+            <div className="col" style={{position:"relative"}}>
+            {
+                viewList.map((ele) => {
+                    return (
+                        <div className="row music-box" onClick={(e) => changeToMovies(e,ele)}>
+                            {ele}
+                        </div>
+                    )
+                })
+            }           
+            </div>
+        )
+    }
+
+    const showMovies = () => {
+        return (
+            <div className="col" style={{position:"relative"}}>
+            {
+                viewList.map((ele,idx) => {
+                    
+                    return (
+                        <div className="row music-box" onClick={(e) => changeToSongs(e,ele)}>
+                            {ele}
+                        </div>
+                    )
+                    
+                })
+            }           
+            </div>
+        )
+    }
+
+    const showSongs = () => {
+        return (
+            <div className="col" style={{marginTop:"20px",position:"relative"}}>
+            {
+                viewList.map((ele,idx) => {
+                    return (
+                        <div className="flx-row song-box" onClick={(e) => openMusic(e,idx)}>
+                            <div className="col-3">
+                                <img src={ele.Cover} alt="cover img"/>
+                            </div>
+                            <div className="col typo">
+                                <span className="row song-li">
+                                    {ele.Name}
+                                </span>
+                                <div className="row artist-li">
+                                    {ele.Artists.join(",")}
+                                </div>
+                            </div>
+                        </div>
+                    )
+                })
+            }           
+            </div>
+        )
+    }
+
+    const changeToMovies = (e,ele) => {
         e.preventDefault()
-        setmusicNavStatus(true)
-        setsong(songList[ele])
-        setsongList(songList[ele])
+        setalbumName(ele)
+        setviewList(Object.keys(songs[ele]))
+        setmusicNavStatus([false,true,false])
+    }
+
+    const changeToSongs = (e,ele) => {
+        e.preventDefault()
+        setmovieName(ele)
+        setviewList(songs[albumName][ele])
+        setmusicNavStatus([false,false,true])
+        // setsong({})
+        // childRef.current.closeMusic()
     }
     const backward = (e) => {
         e.preventDefault()
-        setmusicNavStatus(false)
-        setsong({})
-        childRef.current.closeMusic()
-        setsongList({'aniruth':aniruth,'imman':imman})
+        setviewList(Object.keys(songs))
+        setmusicNavStatus([true,false,false])
+        //setsong({})
+        //childRef.current.closeMusic()
+        
     }
+    
     const openMusic = (e,idx) => {
         e.preventDefault()
         childRef.current.openMusic(e,idx)
     }
     return (
         <div>
-            <MusicPlayer ref={childRef} songs={song}></MusicPlayer>
+            { (albumName !== "" && movieName !== "") ? <MusicPlayer ref={childRef} songs={songs[albumName][movieName]}></MusicPlayer> : ""}
             <div>
                 <div className="fluid">
                     <div className="search-section">
@@ -46,26 +119,11 @@ const AlbumComponent = () => {
                     <div className="song-list-head">
                         { musicNavStatus ? <button className="back-btn" onClick={backward}>HOME</button> : "" }
                     </div>
-                    <div className="col" style={{position:"relative"}}>
-                        {
-                            Object.keys(songList).map((ele,idx) => {
-                                if ( ele.endsWith("mp3") ) {
-                                    return (
-                                        <div className="row music-box" onClick={(e) => openMusic(e,idx)}>
-                                            {ele}
-                                        </div>
-                                    )
-                                } else {
-                                    return (
-                                        <div className="row music-box" onClick={(e) => forward(e,ele)}>
-                                            {ele}
-                                        </div>
-                                    )
-                                }
-                            })
-                        }
-                        
-                    </div>
+                    {
+                        musicNavStatus[0] ? showAlbums() : 
+                            musicNavStatus[1] ? showMovies() :
+                                musicNavStatus[2] ? showSongs() : ""
+                    }
                 </div>
             </div>
         </div>

@@ -10,6 +10,7 @@
     width: 85vw;
     position: fixed;
     z-index: 5;
+    height: 85vh;
 }
 section {
     padding: 10px;
@@ -58,6 +59,10 @@ button {
     margin-top: 40px;
     border: 2px solid black;
     box-shadow: 10px 10px 20px rgba(255, 255, 255, 0.308);
+}
+.mp-img-section > img {
+    width: 200px;
+    height: 200px;
 }
 .mp-song-details-section {
     padding: 10px;
@@ -139,3 +144,43 @@ button {
     opacity: 1;
     transition: 0s
   }
+.song-box {
+    background-color: #FF0057;
+    padding: 10px;
+    margin: 2%;
+    padding: 2%;
+    width: 90%;
+    font-size: medium;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 10px;
+    color: black;
+    background-color: rgba(134, 134, 134, 0.397);
+    min-height: 8vh;
+    float: right;
+}
+.song-box > div > img {
+    width: 60px;
+    height: 60px;
+}
+.song-box > .typo {
+    padding: 10px;
+}
+.song-li {
+    width: 250px;
+    display: inline-block;
+    color: white;
+    font-size: larger;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
+.artist-li {
+    width: 250px;
+    display: inline-block;
+    color: rgb(173, 173, 173);
+    font-size: small;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}

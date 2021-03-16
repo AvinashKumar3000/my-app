@@ -7,7 +7,7 @@ const Manage = (props) => {
             <div className="footer">
                 <ul> 
                 <li>
-                    <a className="inactive" href="/">
+                    <a className="inactive" href="/music">
                     <i class="fa fa-music"></i>
                     <div className="link-name" >music</div>
                     </a>

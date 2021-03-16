@@ -7,7 +7,7 @@ const Status = (props) => {
             <div className="footer">
         <ul> 
           <li>
-            <a className="inactive" href="/">
+            <a className="inactive" href="/music">
               <i className="fa fa-music"></i>
               <div className="link-name" >music</div>
             </a>
