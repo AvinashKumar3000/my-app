@@ -1,9 +1,9 @@
 import React, { useState ,useRef} from "react";
 import '../../css/MusicLibrary.css';
 import MusicPlayer from "../../pages/MusicPlayer";
-import songs from '../../resource/Songs';
 
 const AlbumComponent = () => {
+    const [songs, setsongs] = useState({})
     const [viewList, setviewList] = useState(Object.keys(songs))
     const [albumName, setalbumName] = useState("")
     const [movieName, setmovieName] = useState("")
@@ -11,6 +11,17 @@ const AlbumComponent = () => {
     const [songId, setsongId] = useState(0)
 
     const childRef = useRef();
+
+    React.useEffect(() => {
+        fetch("https://api.jsonbin.io/b/6054d08a7ea6546cf3e2d965")
+        .then(response => response.json())
+        .then(result => {
+            setsongs(result);
+            console.log(songs);
+            document.getElementById("home-btn").click()
+        })
+        .catch(error => console.log('error', error));
+    }, [])
 
     const showAlbums = () => {
         return (
@@ -117,7 +128,7 @@ const AlbumComponent = () => {
                 </div>
                 <div className="extend-fluid">
                     <div className="song-list-head">
-                        { musicNavStatus ? <button className="back-btn" onClick={backward}>HOME</button> : "" }
+                        { musicNavStatus ? <button className="back-btn" id="home-btn" onClick={backward}>HOME</button> : "" }
                     </div>
                     {
                         musicNavStatus[0] ? showAlbums() : 

@@ -28,7 +28,7 @@ ReactDOM.render(
       <Provider store={store}>
         <BrowserRouter>
           <Switch>
-              <Route path="/Auth" component={AuthPage}/>
+              <Route path="/Auth" component={AuthPage} />
               <Route path="/music" component={App} exact />
               <Route path="/chat" component={Chat} />
               <Route path="/status" component={Status} />
