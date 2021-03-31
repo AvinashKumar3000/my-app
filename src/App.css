@@ -1,13 +1,6 @@
-.footer > ul > li  {
-    display: flex;
-    flex-direction: column;
-}
-.footer > ul {
-    padding: 0px;
-}
-.footer > ul > li > a > i {
-    padding: 2px;
-    font-size: 26px;
-    width: 100%;
-    text-align: center;
+.bottom-navigation {
+    z-index: 2;
+    position: fixed;
+    top: auto;
+    bottom: 0px;  
 }
