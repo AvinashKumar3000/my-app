@@ -5,11 +5,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import Album from "./Album";
-import PlayList from "./PlayList";
-import Songs from "./Songs";
+import Individual from "./Individual";
+import Group from "./Group";
+import Pin from "./Pins";
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -66,26 +64,26 @@ function SimpleTabs() {
     <div className={classes.root}>
       <AppBar position="static">
         <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-          <Tab className={classes.tab} label="Album" {...a11yProps(0)} />
-          <Tab className={classes.tab} label="Playlist" {...a11yProps(1)} />
-          <Tab className={classes.tab} label="Songs" {...a11yProps(2)} />
+          <Tab className={classes.tab} label="Individual" {...a11yProps(0)} />
+          <Tab className={classes.tab} label="group" {...a11yProps(1)} />
+          <Tab className={classes.tab} label="pins" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <Album/>
+        <Individual/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <PlayList/>
+        <Group/>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <Songs/>
+        <Pin/>
       </TabPanel>
       
     </div>
   );
 }
 
-const Music = (props) => {
+const Chat = (props) => {
    
     return (
         <div className="main-section">
@@ -94,4 +92,4 @@ const Music = (props) => {
     )
 }
 
-export default Music;
+export default Chat;

@@ -1,9 +1,9 @@
-import React,{ useState } from 'react';
+import React from 'react';
 
 import MusicLibrary from "./components/Music/MusicLibrary";
-import Chat from './components/Chat';
-import Status from './components/Status';
-import Manage from './components/Manage';
+import ChatPage from './components/Chat/ChatPage';
+import StatusPage from './components/Status/StatusPage';
+import ManagePage from './components/Manage/ManagePage'
 
 import './App.css';
 
@@ -13,11 +13,17 @@ import { faMusic, faComment, faCircleNotch, faCog } from '@fortawesome/free-soli
 import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import MusicPlayer from './pages/Player/MusicPlayer';
+
 const useStyles = makeStyles({
   root: {
     width: "100vw",
     paddingBottom:"1px"
   },
+  musicPlayer:{
+    color:"black",
+    bacgroundColor:'white'
+  }
 });
 
 const TabView = (props) => {
@@ -26,11 +32,11 @@ const TabView = (props) => {
   if ( value === "music" ) {
     return ( <MusicLibrary/> )
   }else if ( value === "chat" ){
-    return ( <Chat/> )
+    return ( <ChatPage/>)
   }else if ( value === "status" ){
-    return ( <Status/> )
+    return ( <StatusPage/> )
   }
-  return ( <Manage/> )
+  return ( <ManagePage/> )
 }
 
 const App = () => {
@@ -45,6 +51,10 @@ const App = () => {
     <div className="app">
       <TabView value={value}/>
       <div className="bottom-navigation">
+
+        <div className={classes.musicPlayer}>
+          <MusicPlayer/>
+        </div>
         <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
           <BottomNavigationAction 
             label="music" 

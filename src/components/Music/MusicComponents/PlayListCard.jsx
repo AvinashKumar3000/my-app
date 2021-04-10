@@ -41,7 +41,7 @@ const PlayListCard = (props) => {
     const { name, creator, type, url} = props
     if ( type == 'folder' ) {
         return (
-            <Grid item xs={12} sm={3}>
+            <Grid item xs={12} sm={3} style={{marginBottom:"10px"}}>
                 <div className={classes.folder}>
                     <Grid container spacing={3}>
                         <Grid item xs={2}>

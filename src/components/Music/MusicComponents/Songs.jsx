@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const Album = () => {
+const Songs = () => {
 
     const classes = useStyles();
     return (
@@ -31,11 +31,7 @@ const Album = () => {
                 </Grid>
             </Grid>
             <Grid container spacing={0}>
-                <PlayListCard  
-                    name={'Liked Songs'} 
-                    creator={'by airwavemusictv'} 
-                    type={"folder"}
-                />
+                
                 <PlayListCard 
                     name={'Faded'} 
                     creator={'by alanwalker'} 
@@ -47,4 +43,4 @@ const Album = () => {
     )
 }
 
-export default Album;
+export default Songs;
