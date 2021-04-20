@@ -1,0 +1,29 @@
+.left-cc, .right-cc,
+.grp-left-cc {
+    padding: 10px;
+    box-shadow: 5px 5px 5px gray;
+    margin: 10px;
+    color: black;
+    width: 60vw;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.left-cc {
+    background-color: white;
+    float: left;
+}   
+.grp-left-cc {
+    background-color: white;
+    float: left;
+}
+.right-cc {
+    background-color: #D1FFC6;
+    float: right;
+}
+.time {
+    color: gray;
+    font-size: small;
+    float: right;
+}
+.by {
+    color: crimson;
+}

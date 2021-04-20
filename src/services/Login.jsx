@@ -4,3 +4,5 @@ const Login = (username,password) => {
     }
     return false
 }
+
+export default Login

@@ -4,7 +4,6 @@ const Status = (props) => {
     return (
         <div className="App">
             <StatusComponent></StatusComponent>
-            
         </div>
     )
 }

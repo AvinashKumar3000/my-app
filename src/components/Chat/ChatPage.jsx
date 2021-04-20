@@ -6,6 +6,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Chat from "./ChatComponents/Chat";
+import ChatSystem from "./ChatComponents/ChatSystem";
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -76,7 +77,8 @@ const ChatPage = (props) => {
    
     return (
         <div className="main-section">
-            <SimpleTabs/>
+            {/* <SimpleTabs/> */}
+            <ChatSystem/>
         </div>
     )
 }

@@ -1,38 +1,28 @@
 
-import React from 'react';
+import React,{ useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import AuthPage from "./pages/AuthPage";
 
-import { createStore } from "redux";
-import allReducers from "./reducers";
-import { Provider } from 'react-redux';
-
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-
-import ChatPage from "./pages/ChatPage";
-import StatusPage from './pages/StatusPage';
-import GroupPage from './pages/GroupPage';
-import AuthPage from './pages/AuthPage';
-
-const store = createStore(
-  allReducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-
-);
+const IndexPage = () => {
+  const [state, setstate] = useState(false)
+  const handleState = ( arg ) => {
+    setstate(arg)
+  }
+  if( !state ){
+    return(
+      <AuthPage handleState={handleState}/>
+    )
+  }
+  return (<App/>) 
+}
 
 ReactDOM.render(
-      <Provider store={store}>
-        <BrowserRouter>
-            <Switch>
-                <Route exact path="/" component={App} />
-                <Route path="/chatPage/:id" component={ChatPage} />
-                <Route path="/groupPage/:id" component={GroupPage} />
-                <Route path="/statusPage/:id" component={StatusPage} />
-            </Switch>
-        </BrowserRouter>
-      </Provider>
+      <div>
+        <IndexPage/>
+      </div>
     ,
   document.getElementById('root')
 );

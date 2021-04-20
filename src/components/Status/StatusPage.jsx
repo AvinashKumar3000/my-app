@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Status from "./StatusComponent.jsx/Status";
+import Status from "./StatusComponent/Status";
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;

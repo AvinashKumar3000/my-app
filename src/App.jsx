@@ -22,7 +22,11 @@ const useStyles = makeStyles({
   },
   musicPlayer:{
     color:"black",
-    bacgroundColor:'white'
+    bacgroundColor:'white',
+    display:'none'
+  },
+  chatPage:{
+    
   }
 });
 
