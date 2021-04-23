@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
@@ -36,15 +36,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function StatusCard() {
+export default function PostCard() {
   const classes = useStyles();
-
+  const [data, setdata] = useState({})
+  useEffect(() => {
+    fetch("http://13.232.66.207:8080/post")
+      .then(response => response.json())
+      .then(result => {
+        setdata(result)
+        console.log(result)
+      })
+      .catch(error => console.log('error', error));
+  }, [])
   return (
     <Card className={classes.root}>
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
-            R
+            {data.id}
           </Avatar>
         }
         action={
@@ -52,18 +61,17 @@ export default function StatusCard() {
             <MoreVertIcon />
           </IconButton>
         }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
-      />
-      <CardMedia
-        className={classes.media}
-        image="/static/images/cards/paella.jpg"
-        title="Paella dish"
+        title={data.auther}
+        subheader={data.time}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          This impressive paella is a perfect party dish and a fun meal to cook together with your
-          guests. Add 1 cup of frozen peas along with the mussels, if you like.
+          {data.description}
+        </Typography>
+        <Typography>
+          <p>
+            {data.shortDesc}
+          </p>
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -74,7 +82,6 @@ export default function StatusCard() {
           <ShareIcon />
         </IconButton>
       </CardActions>
-      
     </Card>
   );
 }

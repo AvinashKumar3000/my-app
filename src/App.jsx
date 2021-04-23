@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ useRef, useState } from 'react';
 
 import MusicLibrary from "./components/Music/MusicLibrary";
 import ChatPage from './components/Chat/ChatPage';
@@ -23,7 +23,6 @@ const useStyles = makeStyles({
   musicPlayer:{
     color:"black",
     bacgroundColor:'white',
-    display:'none'
   },
   chatPage:{
     
@@ -34,7 +33,7 @@ const TabView = (props) => {
   const { value } = props
   
   if ( value === "music" ) {
-    return ( <MusicLibrary/> )
+    return ( <MusicLibrary musicRef={props.musicRef}/> )
   }else if ( value === "chat" ){
     return ( <ChatPage/>)
   }else if ( value === "status" ){
@@ -46,18 +45,18 @@ const TabView = (props) => {
 const App = () => {
   const classes = useStyles();
   const [value, setValue] = React.useState('music');
+  const [musicId, setmusicId] = useState(11);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
+  const musicRef = useRef();
   return (
     <div className="app">
-      <TabView value={value}/>
+      <TabView value={value} musicRef={musicRef}/>
       <div className="bottom-navigation">
-
         <div className={classes.musicPlayer}>
-          <MusicPlayer/>
+          <MusicPlayer ref={musicRef} musicId={musicId} setmusicId={setmusicId}/>
         </div>
         <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
           <BottomNavigationAction 

@@ -70,6 +70,9 @@ const useStyles = makeStyles((theme) => ({
         width:"24px",
         height:"24px",
         padding:"10px"
+    },
+    switch:{
+      padding:"2px"
     }
   }));
 
@@ -92,8 +95,8 @@ export default function InOut() {
                     OUT
                 </Typography>
             </Grid>
-            <Grid item xs={2}>
-                <IOSSwitch checked={state.checked} onChange={handleChange} name="checkedB" />
+            <Grid item xs={2} >
+                <IOSSwitch checked={state.checked} onChange={handleChange} name="checkedB" className={classes.switch}/>
             </Grid>
             <Grid item xs={1}>
                 <Typography className={classes.tab}>

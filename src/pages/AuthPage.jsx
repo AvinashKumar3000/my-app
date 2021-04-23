@@ -10,7 +10,7 @@ const myStyles = makeStyles({
     },
     container: {
         marginTop: '25vh',
-        height: "50vh",
+        height: "350px",
         width: '80vw',
         boxShadow: "2px 2px 5px gray",
         paddingTop: '10%'
@@ -28,24 +28,48 @@ const myStyles = makeStyles({
         fontFamily: 'fantasy',
         color: "gray"
     },
-    alert:{
-        marginTop:'30px'
+    alert: {
+        marginTop: '30px'
+    },
+    btn: {
+        marginBottom: '-200px'
     }
 })
 const AuthPage = (props) => {
+    const [id, setid] = useState(0)
     const [username, setusername] = useState("")
     const [password, setpassword] = useState("")
     const [msg, setmsg] = useState("")
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(username !== "" && password !== "" ){
-            if(Login(username,password)){
-                props.handleState(true)
-            }else{
-                setmsg("username or password is wrong")
-            }
-        }else{
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        
+        var raw = JSON.stringify({"id":id,"username":username,"password":password});
+        
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: raw,
+        };
+        
+       
+
+        if (username !== "" && password !== "") {
+            fetch("http://13.232.66.207:8080/employee/authentication", requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                if(result == "true"){
+                    localStorage.setItem("employeeId",id)
+                    props.handleState(true)
+                }else{
+                    window.alert("wrong authentication")
+                }
+            })
+            .catch(error => console.log('error', error));
+        } else {
             setmsg("the inputs are empty")
         }
         setusername('')
@@ -69,13 +93,22 @@ const AuthPage = (props) => {
                             LOG-IN
                             </Typography>
                         <TextField
+                            id="id"
+                            label="id"
+                            variant="outlined"
+                            fullwidth
+                            className={classes.input}
+                            value={id}
+                            type="number"
+                            onChange={(e) => { e.preventDefault(); setid(e.target.value) }}
+                        /><TextField
                             id="username"
                             label="username"
                             variant="outlined"
                             fullwidth
                             className={classes.input}
                             value={username}
-                            onChange={(e)=>{e.preventDefault();setusername(e.target.value)}}
+                            onChange={(e) => { e.preventDefault(); setusername(e.target.value) }}
                         />
                         <TextField
                             id="password"
@@ -84,7 +117,7 @@ const AuthPage = (props) => {
                             fullwidth
                             className={classes.input}
                             value={password}
-                            onChange={(e)=>{e.preventDefault();setpassword(e.target.value)}}
+                            onChange={(e) => { e.preventDefault(); setpassword(e.target.value) }}
                         />
                     </Grid>
                 </Grid>
@@ -98,6 +131,7 @@ const AuthPage = (props) => {
                             variant="contained"
                             color="primary"
                             onClick={handleSubmit}
+                            className={classes.btn}
                         >
                             log in
                         </Button>
@@ -105,10 +139,10 @@ const AuthPage = (props) => {
                 </Grid>
             </Container>
 
-            <Container className={classes.alert} style={msg === "" ? {display:"none"}:{display:'block'}}>
+            <Container className={classes.alert} style={msg === "" ? { display: "none" } : { display: 'block' }}>
                 <Alert severity="warning">
-                <AlertTitle>Warning</AlertTitle>
-                        {msg}
+                    <AlertTitle>Warning</AlertTitle>
+                    {msg}
                 </Alert>
             </Container>
 

@@ -1,5 +1,5 @@
 import { Container, makeStyles, Grid } from '@material-ui/core';
-import React from 'react';
+import React, { useState } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -64,82 +64,93 @@ function LongMenu() {
 }
 
 const myStles = makeStyles({
-    root:{
-        backgroundColor:'white',
-        color:"black",
-        zIndex:"5",
-        height:'100vh',
-        position:"fixed",
-        top:"0",
-        padding:"10px"
-    },
-    expand:{
-        padding:"3vw",
-        paddingLeft:"20px"
-    },
-    albumName:{
-        padding:"3vw",
-        textAlign:"center"
-    },
-    img:{
-        width:'200px',
-        height:"200px",
-        backgroundColor:"gray",
-    },
-    imgContainer:{
-        width:'100%',
-        padding:"20vw",
-        paddingTop:'20px',
-        paddingBottom:'20px'
-    },
-    section3:{
-        padding:"20px",
-    },
-    artistName:{
-        padding:'2px',
-        color:"gray",
-    }
+  root: {
+    backgroundColor: 'white',
+    color: "black",
+    zIndex: "5",
+    height: '100vh',
+    position: "fixed",
+    top: "0",
+    padding: "10px"
+  },
+  expand: {
+    padding: "3vw",
+    paddingLeft: "20px"
+  },
+  albumName: {
+    padding: "3vw",
+    textAlign: "center"
+  },
+  img: {
+    width: '200px',
+    height: "200px",
+    backgroundColor: "gray",
+  },
+  imgContainer: {
+    width: '100%',
+    padding: "20vw",
+    paddingTop: '20px',
+    paddingBottom: '20px'
+  },
+  section3: {
+    padding: "20px",
+  },
+  artistName: {
+    padding: '2px',
+    color: "gray",
+  }
 })
 const MainMusicPlayer = (props) => {
-    const classes = myStles();
-    return (
-        <Container className={classes.root}>
-            <Grid container>
-                <Grid item xs={2} className={classes.expand}>
-                    <ExpandMoreIcon />
+  const {musicId, setmusicId} = props
+  const [musicData, setmusicData] = useState({})
+  
+  const stepForward = (e) => {
+    e.preventDefault();
+    setmusicId(musicId+1);
+  }
+  const classes = myStles();
+  return (
+    <Container className={classes.root}>
+      <Grid container>
+        <Grid item xs={2} className={classes.expand}>
+          <ExpandMoreIcon onClick={props.changeShow} />
+        </Grid>
+        <Grid item xs={8} className={classes.albumName}>
+          album name
                 </Grid>
-                <Grid item xs={8} className={classes.albumName}>
-                    album name
-                </Grid>
-                <Grid item xs={2}>
-                    <LongMenu/>
-                </Grid>
-            </Grid>
-            <Container className={classes.imgContainer}>
-                <img src="#" alt="" className={classes.img}/>
-            </Container>
-            <Grid container className={classes.section3}>
-                <Grid item xs={10}>
-                    <div className={classes.songName}>
-                    <marquee scrolldelay={120}><span class="marquee">This is a marquee!</span></marquee>
-                    </div>
-                    <div className={classes.artistName}>
-                        artist name
-                    </div>
-                </Grid>
-                <Grid item xs={2}>
-                    <FavoriteBorderOutlined/>
-                </Grid>
-            </Grid>
-            <AudioPlayer
-                    autoPlay
-                    src="#"
-                    // onPlay={e => console.log("onPlay")}
-                    // onEnded={stepForward}
-                    // other props here
-                />
-        </Container>
-    )
+        <Grid item xs={2}>
+          <LongMenu />
+        </Grid>
+      </Grid>
+      <Container className={classes.imgContainer}>
+        <img src={musicData.cover} alt="" className={classes.img} />
+      </Container>
+      <Grid container className={classes.section3}>
+        <Grid item xs={10}>
+          <div className={classes.songName}>
+            <marquee scrolldelay={120}><span class="marquee">{musicData.name}</span></marquee>
+          </div>
+          <div className={classes.artistName}>
+            {musicData.artists}
+            <p>
+              {musicData.releases}
+              {musicData.genere}
+            </p>
+          </div>
+        </Grid>
+        <Grid item xs={2}>
+          <FavoriteBorderOutlined />
+        </Grid>
+      </Grid>
+      <AudioPlayer
+        autoPlay
+        src={musicData.url}
+        // onPlay={e => console.log("onPlay")}
+        onEnded={stepForward}
+        // other props here
+      />
+    </Container>
+  )
 }
 
 export default MainMusicPlayer

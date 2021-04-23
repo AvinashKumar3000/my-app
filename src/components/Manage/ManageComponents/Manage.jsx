@@ -7,7 +7,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Info from "./Info";
 import Attendance from "./Attendance";
-import Status from "./Status";
+import Post from "./Post";
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -64,13 +64,13 @@ function SimpleTabs() {
     <div className={classes.root}>
       <AppBar position="static">
         <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-          <Tab className={classes.tab} label="Status" {...a11yProps(0)} />
+          <Tab className={classes.tab} label="Post" {...a11yProps(0)} />
           <Tab className={classes.tab} label="attendance" {...a11yProps(1)} />
           <Tab className={classes.tab} label="info" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <Status/>
+        <Post/>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <Attendance/>
@@ -86,7 +86,7 @@ function SimpleTabs() {
 const Manage = (props) => {
    
     return (
-        <div className="main-section">
+        <div className="main-section" style={{backgroundColor:"white"}}>
             <SimpleTabs/>
         </div>
     )

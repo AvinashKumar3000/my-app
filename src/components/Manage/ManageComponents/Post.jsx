@@ -1,6 +1,6 @@
 import { Button, Container, makeStyles } from '@material-ui/core';
 import React from 'react';
-import StatusCard from './StatusCard';
+import PostCard from './PostCard';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -13,21 +13,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const Status = (props) => {
+const Post = (props) => {
     const classes = useStyles();
     return (
         <div className={classes.root}>
             <Container>
-                <Button
-                    variant="contained"
-                    color="secondary"
-                >
-                    update Status
-                </Button>
             </Container>
-                <StatusCard/>
+                <PostCard/>
         </div>
     )
 }
 
-export default Status;
+export default Post;

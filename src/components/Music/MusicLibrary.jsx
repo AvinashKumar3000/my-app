@@ -46,7 +46,7 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: "white",
     color:"black"
   },
   tab:{
@@ -82,7 +82,7 @@ function SimpleTabs() {
 const MusicLibrary = (props) => {
    
     return (
-        <div className="main-section">
+        <div className="main-section" style={{backgroundColor:"white"}}>
             <SimpleTabs/>
         </div>
     )
