@@ -22,7 +22,7 @@ const Songs = (props) => {
 
     const [songsList, setsongsList] = useState([])
     useEffect(() => {
-        fetch("http://13.232.66.207:8080/Songs/getSongs")
+        fetch("https://springboot-lemon.herokuapp.com/Songs/getSongs")
             .then(response => response.json())
             .then(result => {
                 setsongsList(result)

@@ -32,7 +32,7 @@ const BasicTable = forwardRef((props,ref) => {
   }, [])
 
   const loadTable = () => {
-    fetch("http://13.232.66.207:8080/attendance/"+localStorage.getItem("employeeId"))
+    fetch("https://springboot-lemon.herokuapp.com/attendance/"+localStorage.getItem("employeeId"))
     .then(response => response.json())
     .then(result => {
       console.log(result)

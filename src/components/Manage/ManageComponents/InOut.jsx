@@ -82,17 +82,15 @@ const useStyles = makeStyles((theme) => ({
 
 export default function InOut(props) {
   const classes = useStyles()
-  const [state, setState] = React.useState(true);
 
   const handleChange = (stateValue) => {
-    setState(stateValue);
-    postAttendance();
+    postAttendance(stateValue);
   };
 
-  const postAttendance = () => {
+  const postAttendance = (stateValue) => {
     const data = {
       date: new Date(),
-      type: (state) ? 1 : 0,
+      type: (stateValue) ? 1 : 0,
       empId: localStorage.getItem("employeeId")
     }
 
@@ -108,7 +106,7 @@ export default function InOut(props) {
       redirect: 'follow'
     };
 
-    fetch("http://13.232.66.207:8080/attendance", requestOptions)
+    fetch("https://springboot-lemon.herokuapp.com/attendance", requestOptions)
       .then(response => response.text())
       .then(result => {
         console.log(result)

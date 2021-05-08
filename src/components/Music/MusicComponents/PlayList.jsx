@@ -26,7 +26,7 @@ const PlayList = (props) => {
         getData();
     }, [])
     const getData = () => {
-        fetch("http://13.232.66.207:8080/playlist/" + localStorage.getItem("employeeId"))
+        fetch("https://springboot-lemon.herokuapp.com/playlist/" + localStorage.getItem("employeeId"))
             .then(response => response.json())
             .then(result => {
                 setplaylist(result)
@@ -53,7 +53,7 @@ const PlayList = (props) => {
                 redirect: 'follow'
             };
 
-            fetch("http://13.232.66.207:8080/playlist", requestOptions)
+            fetch("https://springboot-lemon.herokuapp.com/playlist", requestOptions)
                 .then(response => response.text())
                 .then(result => {
                     window.alert("created sucess")

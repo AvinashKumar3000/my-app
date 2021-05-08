@@ -30,7 +30,7 @@ export default function PodCastCard() {
   const [data, setdata] = useState({})
   useEffect(() => {
 
-    fetch("http://13.232.66.207:8080/podcast")
+    fetch("https://springboot-lemon.herokuapp.com/podcast")
       .then(response => response.json())
       .then(result => {
         setdata(result)

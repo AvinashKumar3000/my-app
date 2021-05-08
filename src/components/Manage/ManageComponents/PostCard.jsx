@@ -40,7 +40,7 @@ export default function PostCard() {
   const classes = useStyles();
   const [data, setdata] = useState({})
   useEffect(() => {
-    fetch("http://13.232.66.207:8080/post")
+    fetch("https://springboot-lemon.herokuapp.com/post")
       .then(response => response.json())
       .then(result => {
         setdata(result)

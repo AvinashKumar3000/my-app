@@ -23,7 +23,7 @@ const Individual = (props) => {
     const [data, setdata] = useState([])
     const classes = useStyles();
     useEffect(() => {
-        fetch("http://13.232.66.207:8080/employee/getAllEmployeesByCID/" + 53)//+ localStorage.getItem("employeeId"))
+        fetch("https://springboot-lemon.herokuapp.com/employee/getAllEmployeesByCID/" + 53)//+ localStorage.getItem("employeeId"))
             .then(response => response.json())
             .then(result => {
                 setdata(result)

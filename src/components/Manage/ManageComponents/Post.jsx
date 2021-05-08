@@ -40,7 +40,7 @@ const Post = (props) => {
             redirect: 'follow'
         };
 
-        fetch("http://13.232.66.207:8080/status", requestOptions)
+        fetch("https://springboot-lemon.herokuapp.com/status", requestOptions)
             .then(response => response.text())
             .then(result => {
                 window.alert("updated successfully")

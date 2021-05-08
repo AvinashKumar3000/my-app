@@ -58,7 +58,7 @@ const AuthPage = (props) => {
        
 
         if (username !== "" && password !== "") {
-            fetch("http://13.232.66.207:8080/employee/authentication", requestOptions)
+            fetch("https://springboot-lemon.herokuapp.com/employee/authentication", requestOptions)
             .then(response => response.text())
             .then(result => {
                 if(result == "true"){

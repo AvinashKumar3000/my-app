@@ -28,7 +28,7 @@ export default function Info() {
         updateData();
     }, [])
     const updateData = () => {
-        fetch("http://13.232.66.207:8080/employee/getById/"+localStorage.getItem("employeeId"))
+        fetch("https://springboot-lemon.herokuapp.com/employee/getById/"+localStorage.getItem("employeeId"))
             .then(response => response.json())
             .then(result => {
                 setstate(result)

@@ -34,7 +34,7 @@ export default function Status() {
   }, [])
 
   const load = () => {
-    fetch("http://13.232.66.207:8080/status")
+    fetch("https://springboot-lemon.herokuapp.com/status")
       .then(response => response.json())
       .then(result => {
         setitem(result)

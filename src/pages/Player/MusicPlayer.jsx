@@ -34,7 +34,7 @@ const MiniPlayer = (props) => {
         <Container className={classes.miniPlayerRoot} onClick={props.changeShow}>
             <Grid container style={{ height: '100%', width: "100%" }}>
                 <Grid item xs={2} className={classes.img}>
-                    <img style={{height:"55px",width:"55px"}} src={props.songData.cover} alt="d" />
+                    <img style={{height:"55px",width:"55px"}} src={props.songData.cover} alt="" />
                 </Grid>
                 <Grid item xs={8} className={classes.details}>
                     <Typography >
@@ -72,7 +72,7 @@ const MusicPlayer = forwardRef((props,ref) => {
     
    
     const getMusic = () => {
-        fetch("http://13.232.66.207:8080/Songs/getSongs/"+songRange[play_idx])
+        fetch("https://springboot-lemon.herokuapp.com/Songs/getSongs/"+songRange[play_idx])
           .then(response => response.json())
           .then(result => {
             console.log(result);

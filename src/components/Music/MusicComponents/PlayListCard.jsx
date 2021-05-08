@@ -52,7 +52,7 @@ const SongCardHere = (props) => {
     const classes = useStyles();
     const [songData, setsongData] = useState({})
     useEffect(() => {
-        fetch("http://13.232.66.207:8080/Songs/getSongs/"+props.sId)
+        fetch("https://springboot-lemon.herokuapp.com/Songs/getSongs/"+props.sId)
           .then(response => response.json())
           .then(result => {
             setsongData(result);
@@ -83,7 +83,7 @@ const PlayListCard = (props) => {
     const { id, name, creator, type, url } = props
     const [songList, setsongList] = useState([])
     useEffect(() => {
-        fetch("http://13.232.66.207:8080/playlistsongs/" + id)
+        fetch("https://springboot-lemon.herokuapp.com/playlistsongs/" + id)
             .then(response => response.json())
             .then(result => {
                 setsongList(result)
