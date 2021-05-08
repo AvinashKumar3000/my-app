@@ -69,7 +69,7 @@ const AuthPage = (props) => {
                     window.alert("wrong authentication")
                 }
             })
-            .catch(error => console.log('error', error));
+            .catch(error => window.alert(error));
         } else {
             setmsg("the inputs are empty")
         }
