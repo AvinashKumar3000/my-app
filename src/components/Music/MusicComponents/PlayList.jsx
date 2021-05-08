@@ -19,14 +19,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const PlayList = () => {
+const PlayList = (props) => {
     const classes = useStyles();
     const [playlist, setplaylist] = useState([])
     useEffect(() => {
         getData();
     }, [])
     const getData = () => {
-        localStorage.setItem("employeeId", 94);
         fetch("http://13.232.66.207:8080/playlist/" + localStorage.getItem("employeeId"))
             .then(response => response.json())
             .then(result => {
@@ -64,6 +63,9 @@ const PlayList = () => {
                 .catch(error => console.log('error', error));
         }
     }
+    const handleData = (data) => {
+        props.handleData(data)
+      }
     return (
         <div className={classes.root}>
             <Grid container spacing={0}>
@@ -84,6 +86,7 @@ const PlayList = () => {
                                 name={item.name}
                                 creator={'by avinash'}
                                 type={"folder"}
+                                handleData={handleData}
                             />
                         )
                     })

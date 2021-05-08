@@ -1,5 +1,5 @@
 import { Container, makeStyles, Grid } from '@material-ui/core';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -10,17 +10,24 @@ import { FavoriteBorderOutlined } from '@material-ui/icons';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 
-const options = [
-  'None',
-  'Atria',
-  'Callisto'
-];
 
-const ITEM_HEIGHT = 18;
 
-function LongMenu() {
+const ITEM_HEIGHT = 40;
+
+function LongMenu(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [options, setoptions] = useState([])
+
   const open = Boolean(anchorEl);
+
+  useEffect(() => {
+      fetch("http://13.232.66.207:8080/playlist/" + localStorage.getItem("employeeId"))
+          .then(response => response.json())
+          .then(result => {
+              setoptions(result)
+          })
+          .catch(error => console.log('error', error));
+  }, [])
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -29,7 +36,32 @@ function LongMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+ const btnHandle = (data) => {
+    
+    var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
 
+            var raw = JSON.stringify(
+                {
+                  "songId": props.songId,
+                  "playlistId": data.id 
+                });
+
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
+
+            fetch("http://13.232.66.207:8080/playlistsongs", requestOptions)
+                .then(response => response.text())
+                .then(result => {
+                    window.alert("created sucess")
+                    console.log(result)
+                })
+                .catch(error => console.log('error', error));
+ }
   return (
     <div>
       <IconButton
@@ -54,8 +86,13 @@ function LongMenu() {
         }}
       >
         {options.map((option) => (
-          <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
-            {option}
+          <MenuItem key={option.name} selected={option === 'Pyxis'} onClick={handleClose}>
+            <div onClick={ (e) => {
+                e.preventDefault();
+                btnHandle(option)
+            }}>
+              {"Add to " + option.name}
+            </div>
           </MenuItem>
         ))}
       </Menu>
@@ -98,15 +135,30 @@ const myStles = makeStyles({
   artistName: {
     padding: '2px',
     color: "gray",
+  },
+  btnPart: {
+    width:"100%",
+    display:'flex',
+    flexDirection:"row"
+  },
+  btn:{
+    width:"40vw",
+    margin:"10px",
+    padding:"10px",
+    float:"left",
+    textAlign:'center',
+    backgroundColor:"black",
+    color:'white'
   }
 })
 const MainMusicPlayer = (props) => {
-  const {musicId, setmusicId} = props
-  const [musicData, setmusicData] = useState({})
-  
   const stepForward = (e) => {
     e.preventDefault();
-    setmusicId(musicId+1);
+    props.nextSong();
+  }
+  const stepBackward = (e) => {
+    e.preventDefault();
+    props.prevSong();
   }
   const classes = myStles();
   return (
@@ -117,24 +169,24 @@ const MainMusicPlayer = (props) => {
         </Grid>
         <Grid item xs={8} className={classes.albumName}>
           album name
-                </Grid>
+        </Grid>
         <Grid item xs={2}>
-          <LongMenu />
+          <LongMenu songId={props.songData.id}/>
         </Grid>
       </Grid>
       <Container className={classes.imgContainer}>
-        <img src={musicData.cover} alt="" className={classes.img} />
+        <img src={props.songData.cover} alt="" className={classes.img} />
       </Container>
       <Grid container className={classes.section3}>
         <Grid item xs={10}>
           <div className={classes.songName}>
-            <marquee scrolldelay={120}><span class="marquee">{musicData.name}</span></marquee>
+            <marquee scrolldelay={120}><span class="marquee">{props.songData.name}</span></marquee>
           </div>
           <div className={classes.artistName}>
-            {musicData.artists}
+            {props.songData.artists}
             <p>
-              {musicData.releases}
-              {musicData.genere}
+              {props.songData.releases}
+              {props.songData.genere}
             </p>
           </div>
         </Grid>
@@ -144,11 +196,19 @@ const MainMusicPlayer = (props) => {
       </Grid>
       <AudioPlayer
         autoPlay
-        src={musicData.url}
+        src={props.songData.url}
         // onPlay={e => console.log("onPlay")}
         onEnded={stepForward}
         // other props here
       />
+      <div className={classes.btnpart}>
+        <button className={classes.btn} onClick={stepBackward} >
+          prev
+        </button>
+        <button className={classes.btn} onClick={stepForward}>
+           next
+          </button>
+        </div>
     </Container>
   )
 }

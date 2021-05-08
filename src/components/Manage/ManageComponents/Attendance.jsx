@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core";
-import React from "react";
+import React, { useRef } from "react";
 import BasicTable from "./BasicTable";
 import InOut from "./InOut";
 
@@ -11,10 +11,14 @@ const useStyles = makeStyles({
   });
 const Attendance = () => {
     const classes = useStyles()
+    const updateTable = () => {
+      childRef.current.load();
+    }
+    const childRef = useRef()
     return (
         <div className={classes.root}>
-            <InOut/>
-            <BasicTable/>
+            <InOut updateTable={updateTable}/>
+            <BasicTable ref={childRef}/>
         </div>
     )
 }

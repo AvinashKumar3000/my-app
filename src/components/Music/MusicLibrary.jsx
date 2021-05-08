@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
       width:"50%"
   }
 }));
-function SimpleTabs() {
+function SimpleTabs(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -61,6 +61,9 @@ function SimpleTabs() {
     setValue(newValue);
   };
 
+  const handleData = (data) => {
+    props.handleData(data);
+  }
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -70,20 +73,22 @@ function SimpleTabs() {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <Music/>
+        <Music handleData={handleData} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <PodCast/>
+        <PodCast />
       </TabPanel>
     </div>
   );
 }
 
 const MusicLibrary = (props) => {
-   
+  const handleData = (data) => {
+    props.handleData(data)
+  }
     return (
         <div className="main-section" style={{backgroundColor:"white"}}>
-            <SimpleTabs/>
+            <SimpleTabs handleData={handleData}/>
         </div>
     )
 }

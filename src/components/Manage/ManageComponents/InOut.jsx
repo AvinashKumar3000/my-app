@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Switch from '@material-ui/core/Switch';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import { Button } from '@material-ui/core';
 
 const IOSSwitch = withStyles((theme) => ({
   root: {
@@ -60,50 +61,87 @@ const IOSSwitch = withStyles((theme) => ({
 
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-      padding:"auto",
-      paddingLeft:"0px",
-      backgroundColor:"white",
-      width:"100%"
-    },
-    tab:{
-        width:"24px",
-        height:"24px",
-        padding:"10px"
-    },
-    switch:{
-      padding:"2px"
-    }
-  }));
+  root: {
+    padding: "auto",
+    paddingLeft: "0px",
+    backgroundColor: "white",
+    width: "100%"
+  },
+  tab: {
+    width: "24px",
+    height: "24px",
+    padding: "10px"
+  },
+  switch: {
+    padding: "2px"
+  },
+  input:{
+    margin:"10px"
+  }
+}));
 
-export default function InOut() {
+export default function InOut(props) {
   const classes = useStyles()
   const [state, setState] = React.useState(true);
 
-  const handleChange = (event) => {
-    setState(event.target.checked);
+  const handleChange = (stateValue) => {
+    setState(stateValue);
+    postAttendance();
   };
 
+  const postAttendance = () => {
+    const data = {
+      date: new Date(),
+      type: (state) ? 1 : 0,
+      empId: localStorage.getItem("employeeId")
+    }
+
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify(data);
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+
+    fetch("http://13.232.66.207:8080/attendance", requestOptions)
+      .then(response => response.text())
+      .then(result => {
+        console.log(result)
+        props.updateTable();
+      })
+      .catch(error => console.log('error', error));
+  }
   return (
     <div className={classes.root}>
-        <Grid container>
-            <Grid item xs={6}>
-
-            </Grid>
-            <Grid item xs={2}>
-                <Typography className={classes.tab}>
-                    OUT
-                </Typography>
-            </Grid>
-            <Grid item xs={2} >
-                <IOSSwitch checked={state.checked} onChange={handleChange} name="checkedB" className={classes.switch}/>
-            </Grid>
-            <Grid item xs={1}>
-                <Typography className={classes.tab}>
-                    IN
-                </Typography>
-            </Grid>
+      <Grid container>
+        <Grid item xs={5}>
+          <Button
+            fullWidth
+            variant="contained"
+            color="secondary"
+            className={classes.input}
+            onClick={(e) => {e.preventDefault(); handleChange(true)}}
+          >
+            IN
+                </Button>
         </Grid>
+        <Grid item xs={6} style={{paddingLeft:"5vw"}}>
+          <Button
+            fullWidth
+            variant="contained"
+            color="secondary"
+            className={classes.input}
+            onClick={(e) => {e.preventDefault(); handleChange(false)}}
+          >
+            OUT
+                </Button>
+        </Grid>
+      </Grid>
     </div>
   );
 }

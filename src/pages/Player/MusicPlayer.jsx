@@ -1,6 +1,6 @@
 import { Container, Grid, makeStyles, Typography } from '@material-ui/core';
-import { MusicVideo, PlayCircleOutline } from '@material-ui/icons';
-import React, { useState } from 'react';
+import { PlayCircleOutline } from '@material-ui/icons';
+import React, { useEffect, useState, forwardRef, useImperativeHandle } from 'react';
 import MainMusicPlayer from './MainMusicPlayer';
 
 const miniPlayerStyles = makeStyles({
@@ -15,7 +15,6 @@ const miniPlayerStyles = makeStyles({
     img: {
         height: "100%",
         width: "100%",
-        backgroundColor: 'gray'
     },
     details: {
         padding: "5px",
@@ -35,15 +34,15 @@ const MiniPlayer = (props) => {
         <Container className={classes.miniPlayerRoot} onClick={props.changeShow}>
             <Grid container style={{ height: '100%', width: "100%" }}>
                 <Grid item xs={2} className={classes.img}>
-                    <img src="#" alt="d" />
+                    <img style={{height:"55px",width:"55px"}} src={props.songData.cover} alt="d" />
                 </Grid>
                 <Grid item xs={8} className={classes.details}>
                     <Typography >
                         <div>
-                            song name
+                            {props.songData.name}
                         </div>
                         <div className={classes.songArtist}>
-                            song artist
+                            {props.songData.artists}
                         </div>
                     </Typography>
                 </Grid>
@@ -56,34 +55,56 @@ const MiniPlayer = (props) => {
 }
 
 
-const MusicPlayer = (props) => {
+const MusicPlayer = forwardRef((props,ref) => {
     const [show, setshow] = useState(false)
-    const { musicId, setmusicId } = props
+    const [songRange, setsongRange] = useState([])
+    const [play_idx, setplay_idx] = useState(11)
+    const [songData, setsongData] = useState({})
 
+    useImperativeHandle(ref, () => ({
+        setValues (arg1,arg2) {
+            setsongRange(arg1)
+            setplay_idx(arg1.indexOf(arg2))
+            console.log("performing search in : "+ arg1.indexOf(arg2))
+            getMusic()
+        }
+      }));
+    
+   
     const getMusic = () => {
-        fetch("http://13.232.66.207:8080/Songs/getSongs/"+musicId)
+        fetch("http://13.232.66.207:8080/Songs/getSongs/"+songRange[play_idx])
           .then(response => response.json())
           .then(result => {
-            console.log(result)
-            setmusicData(result)
+            console.log(result);
+            setsongData(result);
           })
           .catch(error => console.log('error', error));
-      }
+    }
 
     const changeShow = (e) => {
         console.log("clicked")
         e.preventDefault();
         setshow(!show);
     }
+    const nextSong = () => {
+        setplay_idx( ( play_idx + 1 ) % songRange.length )
+        getMusic();
+        console.log("next song is clicked")
+    }
+    const prevSong = () => {
+        setplay_idx((play_idx == 0 )? songRange.length - 1 : play_idx - 1 )
+        getMusic();
+        console.log("prev song is clicked")
+    }
     return (
         <div>
             <div style={(!show)?{display:"block"}:{display:"none"}} >     
-                <MiniPlayer changeShow={changeShow} />
+                <MiniPlayer songData={songData} changeShow={changeShow} />
             </div>
             <div style={(show)?{display:"block"}:{display:"none"}}>     
-                <MainMusicPlayer musicId={musicId} setmusicId={setmusicId} changeShow={changeShow}/>
+                <MainMusicPlayer songData={songData} nextSong={nextSong} prevSong={prevSong} changeShow={changeShow}/>
             </div>
         </div>
     )
-}
+})
 export default MusicPlayer;

@@ -7,7 +7,6 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Individual from "./Individual";
 import Group from "./Group";
-import Pin from "./Pins";
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -52,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
       width:"33%"
   }
 }));
-function SimpleTabs() {
+function SimpleTabs(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -66,17 +65,13 @@ function SimpleTabs() {
         <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
           <Tab className={classes.tab} label="Individual" {...a11yProps(0)} />
           <Tab className={classes.tab} label="group" {...a11yProps(1)} />
-          <Tab className={classes.tab} label="pins" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <Individual/>
+        <Individual showChat={props.showChat}/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Group/>
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <Pin/>
+        <Group showChat={props.showChat}/>
       </TabPanel>
       
     </div>
@@ -84,10 +79,9 @@ function SimpleTabs() {
 }
 
 const Chat = (props) => {
-   
     return (
         <div className="main-section">
-            <SimpleTabs/>
+            <SimpleTabs showChat={props.showChat}/>
         </div>
     )
 }

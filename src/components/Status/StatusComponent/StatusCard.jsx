@@ -17,15 +17,15 @@ const useStyles = makeStyles({
   time:{
       color:"black",
       backgroundColor:'white',
-      marginLeft:"60vw",
+      marginLeft:"30vw",
       padding:'10px',
       borderRadius:'10px',
-      width:'20vw',
+      width:'50vw',
       textAlign:'center'
   }
 });
 
-export default function MediaCard() {
+export default function MediaCard(props) {
   const classes = useStyles();
 
   return (
@@ -33,21 +33,21 @@ export default function MediaCard() {
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image="/static/images/cards/contemplative-reptile.jpg"
-          title="Contemplative Reptile"
+          image={props.data.picLink}
+          title={"status id : "+props.data.id}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            name
+            {props.data.name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            status line
+            {props.data.status}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
         <Typography size="small" color="secondary" className={classes.time}>
-          Share
+          {new Date(props.data.time).toString().substring(0,24)}
         </Typography>
       </CardActions>
     </Card>

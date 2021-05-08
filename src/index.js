@@ -7,7 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import AuthPage from "./pages/AuthPage";
 
 const IndexPage = () => {
-  const [state, setstate] = useState(true)
+  const [state, setstate] = useState(false)
   const handleState = ( arg ) => {
     setstate(arg)
   }

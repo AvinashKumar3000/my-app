@@ -64,7 +64,7 @@ function SimpleTabs() {
     <div className={classes.root}>
       <AppBar position="static">
         <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-          <Tab className={classes.tab} label="Post" {...a11yProps(0)} />
+          <Tab className={classes.tab} label="Status" {...a11yProps(0)} />
           <Tab className={classes.tab} label="attendance" {...a11yProps(1)} />
           <Tab className={classes.tab} label="info" {...a11yProps(2)} />
         </Tabs>

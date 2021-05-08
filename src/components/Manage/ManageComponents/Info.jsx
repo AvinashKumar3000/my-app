@@ -1,106 +1,59 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import { Typography } from '@material-ui/core';
+import { Box, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-      padding:"10px",
-      paddingBottom:"50px"
-  },
-  heading:{
-      marginBottom:"20px"
-  },
-  input:{
-      marginBottom:"10px"
-  }
+    root: {
+        padding: "10px",
+        paddingBottom: "120px"
+    },
+    heading: {
+        marginBottom: "20px"
+    },
+    input: {
+        marginBottom: "10px",
+        padding:"10px",
+        border:"2px solid black"
+    },
+    h:{
+        color:"blue"
+    }
 }));
 
 export default function Info() {
-  const classes = useStyles();
-
-  return (
-    <div className={classes.root} >
-        <Typography className={classes.heading}>
-            ABOUT YOUR DETAILS
-        </Typography>
-        <TextField 
-            id="id" 
-            label="id" 
-            variant="outlined" 
-            fullWidth 
-            className={classes.input}
-        />
-        <TextField 
-            id="name" 
-            label="name" 
-            variant="outlined" 
-            fullWidth 
-            className={classes.input}
-        />
-        <TextField 
-            id="gender" 
-            label="gender" 
-            variant="outlined" 
-            fullWidth 
-            className={classes.input}
-        />
-        <TextField 
-            id="address" 
-            label="address" 
-            variant="outlined" 
-            fullWidth 
-            multiline
-            className={classes.input}
-        />
-        <TextField
-            id="dob"
-            label="dob"
-            type="date"
-            defaultValue="2017-05-24"
-            variant="outlined"
-            className={classes.textField}
-            InputLabelProps={{
-            shrink: true,
-            }}
-            fullWidth
-            className={classes.input}
-        />
-        <TextField
-            id="doj"
-            label="doj"
-            type="date"
-            defaultValue="2017-05-24"
-            variant="outlined"
-            className={classes.textField}
-            InputLabelProps={{
-            shrink: true,
-            }}
-            fullWidth
-            className={classes.input}
-        />
-        <TextField 
-            id="username" 
-            label="username" 
-            variant="outlined" 
-            fullWidth 
-            className={classes.input}
-        />
-        <TextField 
-            id="password" 
-            label="password" 
-            variant="outlined" 
-            fullWidth 
-            className={classes.input}
-        />
-        <TextField 
-            id="company Id" 
-            label="company Id" 
-            variant="outlined" 
-            fullWidth 
-            className={classes.input}
-        />
-    
-    </div>
-  );
+    const classes = useStyles();
+    const [state, setstate] = useState({})
+    useEffect(() => {
+        updateData();
+    }, [])
+    const updateData = () => {
+        fetch("http://13.232.66.207:8080/employee/getById/"+localStorage.getItem("employeeId"))
+            .then(response => response.json())
+            .then(result => {
+                setstate(result)
+            })
+            .catch(error => console.log('error', error));
+    }
+    return (
+        <div className={classes.root} >
+            <Typography className={classes.heading}>
+                ABOUT YOUR DETAILS
+            </Typography>
+            {
+                Object.keys(state).map((ele) => {
+                    return(
+                        <Box className={classes.input}>
+                            <Typography className={classes.h}>
+                                {ele}
+                            </Typography>
+                            <Typography>
+                                {state[ele]}
+                            </Typography>
+                        </Box>
+                    )
+                })
+            }
+        </div>
+    );
 }

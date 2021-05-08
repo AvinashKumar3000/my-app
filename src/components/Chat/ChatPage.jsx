@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
       width:"50%"
   }
 }));
-function SimpleTabs() {
+function SimpleTabs(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -67,18 +67,28 @@ function SimpleTabs() {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <Chat/>
+        <Chat showChat={props.showChat}/>
       </TabPanel>
     </div>
   );
 }
 
 const ChatPage = (props) => {
-   
+    const [show, setshow] = useState(false)
+    const [employeeData, setemployeeData] = useState(null)
+    const [type, settype] = useState("ind")
+    const showChat = (ele) => {
+      setemployeeData(ele);
+      if(ele.type == "grp") {
+        settype("grp")
+      }else{
+        settype("ind")
+      }
+      setshow(!show)
+    }
     return (
         <div className="main-section">
-            {/* <SimpleTabs/> */}
-            <ChatSystem/>
+            { show ? <ChatSystem  showChat={showChat} employeeData={employeeData} chatType={type}/> : <SimpleTabs showChat={showChat}/> }
         </div>
     )
 }

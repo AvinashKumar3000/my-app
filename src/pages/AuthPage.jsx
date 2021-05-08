@@ -36,9 +36,9 @@ const myStyles = makeStyles({
     }
 })
 const AuthPage = (props) => {
-    const [id, setid] = useState(0)
-    const [username, setusername] = useState("")
-    const [password, setpassword] = useState("")
+    const [id, setid] = useState(94)
+    const [username, setusername] = useState("avinash")
+    const [password, setpassword] = useState("default")
     const [msg, setmsg] = useState("")
 
     const handleSubmit = (e) => {
@@ -63,6 +63,7 @@ const AuthPage = (props) => {
             .then(result => {
                 if(result == "true"){
                     localStorage.setItem("employeeId",id)
+                    localStorage.setItem("employeeName",username)
                     props.handleState(true)
                 }else{
                     window.alert("wrong authentication")

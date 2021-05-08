@@ -8,29 +8,46 @@ import ChatCard from './ChatCard'
 
 const useStyles = makeStyles((theme) => ({
     root: {
-      flexGrow: 1,
-      minHeight:"85vh",
-      paddingTop:'10px'
+        flexGrow: 1,
+        minHeight: "85vh",
+        paddingTop: '10px'
     },
     btn: {
-      float:'right',
-      margin:'10px'
+        float: 'right',
+        margin: '10px'
     }
 }));
 
 
-const Group = () => {
+const Group = (props) => {
 
+    const chatClick = () => {
+        const ele={
+            name:"company group",
+            id:53,
+            type:'grp'
+        }
+        props.showChat(ele);
+    }
     const classes = useStyles();
     return (
         <div className={classes.root}>
-            
+
             <Grid container spacing={0}>
-                <ChatCard  
-                    name={'Liked Songs'} 
-                    time={'10:00 AM'} 
-                    url={"#"}
-                />
+                <div
+                    style={{ width: '100%' }}
+                    onClick={(e) => {
+                        console.log("clicked")
+                        e.preventDefault();
+                        chatClick();
+                    }}
+                >
+                    <ChatCard
+                        name="company Chat"
+                        time={53}
+                    />
+
+                </div>
             </Grid>
         </div>
     )

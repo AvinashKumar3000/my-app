@@ -5,11 +5,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
 import Album from "./Album";
 import PlayList from "./PlayList";
 import Songs from "./Songs";
+
+
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
       width:"33%"
   }
 }));
-function SimpleTabs() {
+function SimpleTabs(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -62,6 +62,9 @@ function SimpleTabs() {
     setValue(newValue);
   };
 
+  const handleData = (data) => {
+    props.handleData(data)
+  }
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -75,10 +78,10 @@ function SimpleTabs() {
         <Album/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <PlayList/>
+        <PlayList handleData={handleData}/>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <Songs/>
+        <Songs handleData={handleData}/>
       </TabPanel>
       
     </div>
@@ -86,10 +89,12 @@ function SimpleTabs() {
 }
 
 const Music = (props) => {
-   
+  const handleData = (data) => {
+    props.handleData(data);
+  }
     return (
         <div className="main-section">
-            <SimpleTabs/>
+            <SimpleTabs handleData={handleData} />
         </div>
     )
 }
