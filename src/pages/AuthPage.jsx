@@ -95,7 +95,7 @@ const AuthPage = (props) => {
                 >
                     <Grid item >
                         <Typography className={classes.title}>
-                            LOG-IN
+                            LOG-IN{info}
                             </Typography>
                         <TextField
                             id="id"
@@ -138,7 +138,7 @@ const AuthPage = (props) => {
                             onClick={handleSubmit}
                             className={classes.btn}
                         >
-                            log in : {info}
+                            log in : 
                         </Button>
                     </Grid>
                 </Grid>
