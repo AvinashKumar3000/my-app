@@ -39,6 +39,7 @@ const AuthPage = (props) => {
     const [id, setid] = useState(94)
     const [username, setusername] = useState("avinash")
     const [password, setpassword] = useState("default")
+    const [info, setinfo] = useState("information")
     const [msg, setmsg] = useState("")
 
     const handleSubmit = (e) => {
@@ -58,6 +59,7 @@ const AuthPage = (props) => {
        
 
         if (username !== "" && password !== "") {
+            setinfo("validation started")
             fetch("https://springboot-lemon.herokuapp.com/employee/authentication", requestOptions)
             .then(response => response.text())
             .then(result => {
@@ -65,11 +67,13 @@ const AuthPage = (props) => {
                     localStorage.setItem("employeeId",id)
                     localStorage.setItem("employeeName",username)
                     props.handleState(true)
+                    setinfo("truee")
                 }else{
                     window.alert("wrong authentication")
+                    setinfo("wrong")
                 }
             })
-            .catch(error => window.alert(error));
+            .catch(error => setinfo("error"+error));
         } else {
             setmsg("the inputs are empty")
         }
@@ -134,7 +138,7 @@ const AuthPage = (props) => {
                             onClick={handleSubmit}
                             className={classes.btn}
                         >
-                            log in
+                            log in : {info}
                         </Button>
                     </Grid>
                 </Grid>
